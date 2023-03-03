@@ -17,7 +17,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
 
 RUN wget -q https://www.mathworks.com/mpm/glnxa64/mpm \ 
     && chmod +x mpm \
-    && ./mpm install --release=${MATLAB_RELEASE} --destination=/opt/matlab --products MATLAB \
+    && ./mpm install --release=${MATLAB_RELEASE} --destination=/opt/matlab/${MATLAB_RELEASE} --products MATLAB \
     || (echo "MPM Installation Failure. See below for more information:" && cat /tmp/mathworks_root.log && false) \
     && rm -f mpm /tmp/mathworks_root.log \
-    && ln -s /opt/matlab/bin/matlab /usr/local/bin/matlab
+    && ln -s /opt/matlab/${MATLAB_RELEASE}/bin/matlab /usr/local/bin/matlab
